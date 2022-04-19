@@ -1,0 +1,47 @@
+{% for key, person in data %}
+<div style="margin: 10px">
+    {{ person['name'] }} {{ person['surname']}} {{ person['person_code'] }}
+    <a href="" data-toggle="modal" data-target="#PersonData{{ key }}">View</a>
+
+    <div class="modal fade" id="PersonData{{ key }}" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Details</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        Name : {{ person['name'] }}
+                    </div>
+                    <div>
+                        Surname : {{ person['surname'] }}
+                    </div>
+                    <div>
+                        Person Code : {{ person['person_code'] }}
+                    </div>
+                    <div>
+                        <div>
+                            Forms
+                        </div>
+                        {% for form in forms[ key ] %}
+                        <div>
+                            <a href="/form/{{ form['id'] }}">{{ form['created_at'] }}</a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <form action="/registry/{{person['id']}}" method="POST">
+                        <button type="submit" class="btn btn-default">Create Form</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endfor %}

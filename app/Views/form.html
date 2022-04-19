@@ -1,0 +1,343 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+<div style="text-align: center; margin: auto">
+    <form action="/form/{{ form['id'] }}/update" type="GET">
+        <table class="center">
+            <tr>
+                <th class="center" colspan="3">Informacija par Pacientu</th>
+            </tr>
+            <tr>
+                <td>Datums</td>
+                <td><input type="text" name="created_at" value="{{form['created_at']}}" disabled></td>
+            </tr>
+            <tr>
+                <td>Vārds</td>
+                <td><input type="text" name="name" value="{{form['name']}}" disabled></td>
+            </tr>
+            <tr>
+                <td>Uzvārds</td>
+                <td><input type="text" name="surname" value="{{ form['surname']}}" disabled></td>
+            </tr>
+            <tr>
+                <td>Personas Kods</td>
+                <td><input type="text" value="{{ form['person_code']}}" disabled></td>
+            </tr>
+            <tr>
+                <td>Sūdzības un anamnēze</td>
+                <td><textarea type="text" name="1" maxlength="2000"
+                              style="width: 400px; height: 100px">{{ form['one']}}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Blakus slimības</td>
+                <td><textarea type="text" name="2" maxlength="2000"
+                              style="width: 400px; height: 100px">{{form['two']}}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Medikamentu nepanesamība, alerģijas</td>
+                <td><textarea type="text" name="3" maxlength="2000" style="width: 400px; height: 100px">{{form['three']}}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <th class="center" colspan="3">Deguns</th>
+            </tr>
+            <tr>
+                <td>Ārējā forma</td>
+                <td>
+                    <select id="Ārējāforma" name="4">
+                        {% if form['four'] == 'Taisna' %}
+                        <option value=""></option>
+                        <option value="Taisna" selected>Taisna</option>
+                        <option value="Deformeta">Deformeta</option>
+                        {% elseif form['four'] == 'Deformeta' %}
+                        <option value=""></option>
+                        <option value="Taisna">Taisna</option>
+                        <option value="Deformeta" selected>Deformeta</option>
+                        {% else %}
+                        <option value=""></option>
+                        <option value="Taisna">Taisna</option>
+                        <option value="Deformeta">Deformeta</option>
+                        {% endif %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Gļotāda</td>
+                <td>
+                    <select name="5" id="Gļotāda">
+                        {% if form['five'] == 'sārta / hiperemēta / cianotiska / bāla'%}
+                        <option value=""></option>
+                        <option value="sārta / hiperemēta / cianotiska / bāla" selected>sārta / hiperemēta / cianotiska
+                            / bāla
+                        </option>
+                        <option value="tūskaina / atrofiska / hipertrofiska">tūskaina / atrofiska / hipertrofiska
+                        </option>
+                        {% elseif form['five'] == 'tūskaina / atrofiska / hipertrofiska'%}
+                        <option value=""></option>
+                        <option value="sārta / hiperemēta / cianotiska / bāla">sārta / hiperemēta / cianotiska / bāla
+                        </option>
+                        <option value="tūskaina / atrofiska / hipertrofiska" selected>tūskaina / atrofiska /
+                            hipertrofiska
+                        </option>
+                        {% else %}
+                        <option value=""></option>
+                        <option value="sārta / hiperemēta / cianotiska / bāla">sārta / hiperemēta / cianotiska / bāla
+                        </option>
+                        <option value="tūskaina / atrofiska / hipertrofiska">tūskaina / atrofiska / hipertrofiska
+                        </option>
+                        {% endif %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Deguna ejas</td>
+                <td>
+                    <div id="Degunaejas">
+                        <ul>
+                            {% if 'Brīvas' in form['six'] %}
+                            <li><input name="6[]" type="checkbox" value="Brīvas" checked>Brīvas</li>
+                            {% else %}
+                            <li><input name="6[]" type="checkbox" value="Brīvas">Brīvas</li>
+                            {% endif %}
+
+                            {% if 'Sašaurinātas' in form['six'] %}
+                            <li><input name="6[]" type="checkbox" value="Sašaurinātas" checked>Sašaurinātas</li>
+                            {% else %}
+                            <li><input name="6[]" type="checkbox" value="Sašaurinātas">Sašaurinātas</li>
+                            {% endif %}
+
+                            {% if 'Saaugumi' in form['six'] %}
+                            <li><input name="6[]" type="checkbox" value="Saaugumi" checked>Saaugumi</li>
+                            {% else %}
+                            <li><input name="6[]" type="checkbox" value="Saaugumi">Saaugumi</li>
+                            {% endif %}
+
+                            {% if 'Veidojumi' in form['six'] %}
+                            <li><input name="6[]" type="checkbox" value="Veidojumi" checked>Veidojumi</li>
+                            {% else %}
+                            <li><input name="6[]" type="checkbox" value="Veidojumi">Veidojumi</li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Atdalijumi</td>
+                <td>
+                    <div id="Ardalijumi">
+                        <ul>
+                            {% if 'Brīvas' in form['seven'] %}
+                            <li><input name="7[]" type="checkbox" value="Brīvas" checked>Brīvas</li>
+                            {% else %}
+                            <li><input name="7[]" type="checkbox" value="Brīvas">Brīvas</li>
+                            {% endif %}
+
+                            {% if 'Sašaurinātas' in form['seven'] %}
+                            <li><input name="7[]" type="checkbox" value="Sašaurinātas" checked>Sašaurinātas</li>
+                            {% else %}
+                            <li><input name="7[]" type="checkbox" value="Sašaurinātas">Sašaurinātas</li>
+                            {% endif %}
+
+                            {% if 'Saaugumi' in form['seven'] %}
+                            <li><input name="7[]" type="checkbox" value="Saaugumi" checked>Saaugumi</li>
+                            {% else %}
+                            <li><input name="7[]" type="checkbox" value="Saaugumi">Saaugumi</li>
+                            {% endif %}
+
+                            {% if 'Veidojumi' in form['seven'] %}
+                            <li><input name="7[]" type="checkbox" value="Veidojumi" checked>Veidojumi</li>
+                            {% else %}
+                            <li><input name="7[]" type="checkbox" value="Veidojumi">Veidojumi</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Deguna starpsiena</td>
+                <td>
+                    <select name="8" id="Degunastarpsiena">
+                        <option value=""></option>
+                        {% if form['eight'] == 'Taisna' %}
+                        <option value="Taisna" selected>Taisna</option>
+                        <option value="Deviēta">Deviēta</option>
+                        <option value="Perforēta">Perforēta</option>
+                        {% elseif form['eight'] == 'Deviēta' %}
+                        <option value="Taisna">Taisna</option>
+                        <option value="Deviēta" selected>Deviēta</option>
+                        <option value="Perforēta">Perforēta</option>
+                        {% elseif form['eight'] == 'Perforēta' %}
+                        <option value="Taisna">Taisna</option>
+                        <option value="Deviēta">Deviēta</option>
+                        <option value="Perforēta" selected>Perforēta</option>
+                        {% else %}
+                        <option value="Taisna">Taisna</option>
+                        <option value="Deviēta">Deviēta</option>
+                        <option value="Perforēta">Perforēta</option>
+                        {% endif %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Elpošana caur degunu</td>
+                <td>
+                    <select name="9" id="Elpošanacaurdegunu">
+                        {% if form['nine'] == 'Brīva' %}
+                        <option value=""></option>
+                        <option value="Brīva" selected>Brīva</option>
+                        <option value="Apgrūtināta">Apgrūtināta</option>
+                        {% elseif form['nine'] == 'Apgrūtināta' %}
+                        <option value=""></option>
+                        <option value="Brīva">Brīva</option>
+                        <option value="Apgrūtināta" selected>Apgrūtināta</option>
+                        {% else %}
+                        <option value=""></option>
+                        <option value="Brīva">Brīva</option>
+                        <option value="Apgrūtināta">Apgrūtināta</option>
+                        {% endif%}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="center" colspan="3">Mutes Dobums</th>
+            </tr>
+            <tr>
+                <td>Rīkle</td>
+                <td>
+                    <div id="Rīkle1">
+                        <ul>
+                            <strong> Gļotāda</strong>
+                            {% if 'Sārta' in form['ten'] %}
+                            <li><input name="10[]" type="checkbox" value="Sārta" checked>Sārta</li>
+                            {% else%}
+                            <li><input name="10[]" type="checkbox" value="Sārta">Sārta</li>
+                            {% endif %}
+
+                            {% if 'Hiperemēta' in form['ten'] %}
+                            <li><input name="10[]" type="checkbox" value="Hiperemēta" checked>Hiperemēta</li>
+                            {% else%}
+                            <li><input name="10[]" type="checkbox" value="Hiperemēta">Hiperemēta</li>
+                            {% endif %}
+
+                            {% if 'Cianotiska' in form['ten'] %}
+                            <li><input name="10[]" type="checkbox" value="Cianotiska" checked>Cianotiska</li>
+                            {% else%}
+                            <li><input name="10[]" type="checkbox" value="Cianotiska">Cianotiska</li>
+                            {% endif %}
+
+                            {% if 'Bāla' in form['ten'] %}
+                            <li><input name="10[]" type="checkbox" value="Bāla" checked>Bāla</li>
+                            {% else%}
+                            <li><input name="10[]" type="checkbox" value="Bāla">Bāla</li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                    <div id="Rīkle2">
+                        <ul>
+                            <strong>Rīkle</strong>
+                            {% if 'Tūskaina' in form['eleven'] %}
+                            <li><input name="11[]" type="checkbox" value="Tūskaina" checked>Tūskaina</li>
+                            {% else%}
+                            <li><input name="11[]" type="checkbox" value="Tūskaina">Tūskaina</li>
+                            {% endif %}
+
+                            {% if 'Atrofiska' in form['eleven'] %}
+                            <li><input name="11[]" type="checkbox" value="Atrofiska" checked>Atrofiska</li>
+                            {% else%}
+                            <li><input name="11[]" type="checkbox" value="Atrofiska">Atrofiska</li>
+                            {% endif %}
+
+                            {% if 'Hipertrofiska' in form['eleven'] %}
+                            <li><input name="11[]" type="checkbox" value="Hipertrofiska" checked>Hipertrofiska</li>
+                            {% else%}
+                            <li><input name="11[]" type="checkbox" value="Hipertrofiska">Hipertrofiska</li>
+                            {% endif %}
+
+
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Mandeles</td>
+                <td>
+                    <div>
+                        <div>
+                            Mandeles
+                            <select name="12" id="Mandeles1">
+                                {% if form['twelve'] == 'Parasta lieluma' %}
+                                <option value=""></option>
+                                <option value="Parasta lieluma" selected>Parasta lieluma</option>
+                                <option value="Palielinātas">Palielinātas</option>
+                                {% elseif form['twelve'] == 'Palielinātas' %}
+                                <option value=""></option>
+                                <option value="Parasta lieluma">Parasta lieluma</option>
+                                <option value="Palielinātas" selected>Palielinātas</option>
+                                {% else %}
+                                <option value=""></option>
+                                <option value="Parasta lieluma">Parasta lieluma</option>
+                                <option value="Palielinātas">Palielinātas</option>
+                                {% endif %}
+                            </select>
+                        </div>
+                        <div>
+                            Aplikums
+                            <select name="13" id="Mandeles2">
+                                {% if form['thirteen'] == 'Ir' %}
+                                <option value=""></option>
+                                <option value="Ir" selected>Ir</option>
+                                <option value="Nav">Nav</option>
+                                {% elseif form['thirteen'] == 'Nav' %}
+                                <option value=""></option>
+                                <option value="Ir">Ir</option>
+                                <option value="Nav" selected>Nav</option>
+                                {% else %}
+                                <option value=""></option>
+                                <option value="Ir">Ir</option>
+                                <option value="Nav">Nav</option>
+                                {% endif %}
+                            </select>
+                        </div>
+
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <input type="submit">
+    </form>
+    <a href="/registry">Back</a>
+</div>
+</form>
+
+</body>
+</html>
+<style>
+    table, th, td {
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        color: black;
+        border: solid 1px black;
+    }
+
+    .center {
+        margin: auto;
+        text-align: center;
+    }
+
+    select, text {
+        width: 200px;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

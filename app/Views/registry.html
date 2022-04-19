@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registry</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="margin: auto; text-align: center; max-width: 300px">
+    <div> Find Person</div>
+    <input class="form-control" type="text" name="name" id="search" maxlength="16" autocomplete="off"
+           value="{{ input }}">
+    <div id="output"></div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#search").keypress(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/registry/personList',
+                data: {
+                    search: $("#search").val(),
+                },
+                success: function (data) {
+                    $("#output").html(data);
+                }
+            });
+        });
+    });
+</script>
